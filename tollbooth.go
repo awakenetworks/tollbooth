@@ -7,9 +7,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/didip/tollbooth/config"
-	"github.com/didip/tollbooth/errors"
-	"github.com/didip/tollbooth/libstring"
+	"github.com/awakenetworks/tollbooth/config"
+	"github.com/awakenetworks/tollbooth/errors"
+	"github.com/awakenetworks/tollbooth/libstring"
 )
 
 // NewLimiter is a convenience function to config.NewLimiter.
@@ -47,7 +47,7 @@ func LimitByRequest(limiter *config.Limiter, r *http.Request) *errors.HTTPError 
 func BuildKeys(limiter *config.Limiter, r *http.Request) [][]string {
 	remoteIP := libstring.RemoteIP(limiter.IPLookups, r)
 	path := r.URL.Path
-	sliceKeys := make([][]string, 0)
+	var sliceKeys [][]string
 
 	// Don't BuildKeys if remoteIP is blank.
 	if remoteIP == "" {
